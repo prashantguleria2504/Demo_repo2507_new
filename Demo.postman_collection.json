@@ -218,7 +218,7 @@
 			"response": []
 		},
 		{
-			"name": "REQ_UpdateUser Copy",
+			"name": "REQ_DeleteUser",
 			"event": [
 				{
 					"listen": "test",
@@ -227,7 +227,7 @@
 							"//Validation status code should be 200\r",
 							"\r",
 							"pm.test(\"TC_01: verify Status code - 201\", function () {\r",
-							"    pm.response.to.have.status(204);\r",
+							"    pm.response.to.have.status(201);\r",
 							"});\r",
 							"\r",
 							"\r",
