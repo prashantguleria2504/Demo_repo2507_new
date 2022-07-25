@@ -154,7 +154,7 @@
 						"exec": [
 							"//Validation status code should be 200\r",
 							"\r",
-							"pm.test(\"TC_01: verify Status code - 201\", function () {\r",
+							"pm.test(\"TC_01: verify Status code - 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
