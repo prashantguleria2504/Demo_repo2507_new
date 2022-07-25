@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "933327ff-b7f0-4e1c-a20c-6ff8b348a3ef",
+		"name": "Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20957738"
+	},
+	"item": [
+		{
+			"name": "REQ_ListUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Validation status code should be 200\r",
+							"\r",
+							"pm.test(\"TC_01: verify Status code - 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//response body contains \r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Tobias\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].first_name).to.eql(\"Michael\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04- Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_05 - validation of header\", ()=>{\r",
+							"\r",
+							"    const apiResponse = pm.response.to.have.header(\"Content-Type\")\r",
+							"    var contentTypeResult = pm.response.headers.get(\"Content-Type\")\r",
+							"   //pm.header\r",
+							"    console.log(contentTypeResult)\r",
+							"    console.log(pm.response)\r",
+							"    pm.expect(contentTypeResult).to.include(\"json\")\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REQ_CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Validation status code should be 200\r",
+							"\r",
+							"pm.test(\"TC_01: verify Status code - 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//response body contains \r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"leader\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"morpheus\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04- Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_05 - validation of header\", ()=>{\r",
+							"\r",
+							"    const apiResponse = pm.response.to.have.header(\"Content-Type\")\r",
+							"    var contentTypeResult = pm.response.headers.get(\"Content-Type\")\r",
+							"   //pm.header\r",
+							"    console.log(contentTypeResult)\r",
+							"    console.log(pm.response)\r",
+							"    pm.expect(contentTypeResult).to.include(\"json\")\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"name\": \"morpheus\",\r\n\r\n    \"job\": \"leader\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REQ_UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Validation status code should be 200\r",
+							"\r",
+							"pm.test(\"TC_01: verify Status code - 201\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//response body contains \r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"morpheus\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"morpheus\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04- Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_05 - validation of header\", ()=>{\r",
+							"\r",
+							"    const apiResponse = pm.response.to.have.header(\"Content-Type\")\r",
+							"    var contentTypeResult = pm.response.headers.get(\"Content-Type\")\r",
+							"   //pm.header\r",
+							"    console.log(contentTypeResult)\r",
+							"    console.log(pm.response)\r",
+							"    pm.expect(contentTypeResult).to.include(\"json\")\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"name\": \"morpheus\",\r\n\r\n    \"job\": \"zion resident\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REQ_UpdateUser Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Validation status code should be 200\r",
+							"\r",
+							"pm.test(\"TC_01: verify Status code - 201\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04- Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
